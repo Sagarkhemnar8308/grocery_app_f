@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery_app/constant/colors.dart';
 import 'package:grocery_app/widgets/icon_widget.dart';
 
+// ignore: must_be_immutable
 class SearchTextFormField extends StatefulWidget {
-  const SearchTextFormField({
+   SearchTextFormField({
     super.key,
     this.hintText,
     this.height,
@@ -28,7 +29,9 @@ class SearchTextFormField extends StatefulWidget {
     this.textColor,
     this.fontSize,
     this.maxLine,
+    this.onTap,
     this.labeltext,
+    required this.autofocus,
   });
 
   final String? initialValue;
@@ -53,6 +56,8 @@ class SearchTextFormField extends StatefulWidget {
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String? labeltext;
+  final void Function()? onTap;
+   bool autofocus=false;
   @override
   State<SearchTextFormField> createState() => _SearchtextFormFieldState();
 }
@@ -72,9 +77,10 @@ class _SearchtextFormFieldState extends State<SearchTextFormField> {
           obscureText: widget.obscureText ?? false,
           initialValue: widget.initialValue,
           cursorColor: black,
+          onTap:widget.onTap ,
           inputFormatters: widget.inputFormater,
           keyboardType: widget.textInputType,
-          autofocus: false,
+          autofocus: widget.autofocus,
           controller: widget.controller,
           focusNode: widget.focusNode,
           onChanged: widget.onChanged,

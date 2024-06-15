@@ -12,6 +12,7 @@ class TextWidget extends StatefulWidget {
     this.letterSpacing,
     this.textOverflow,
     this.textDecoration,
+    this.style,
   });
   final String? text;
   final double? fontSize;
@@ -21,6 +22,7 @@ class TextWidget extends StatefulWidget {
   final TextAlign? textAlign;
   final double? letterSpacing;
   final TextOverflow? textOverflow;
+  final TextStyle? style;
 
   @override
   State<TextWidget> createState() => _TextWidgetState();
@@ -33,7 +35,7 @@ class _TextWidgetState extends State<TextWidget> {
       textAlign: widget.textAlign,
       widget.text ?? "",
       overflow: widget.textOverflow,
-      style: TextStyle(
+      style: widget.style ?? TextStyle(
         decoration: widget.textDecoration,
         fontSize: widget.fontSize ?? 12.sp,
         fontWeight: widget.fontWeight,

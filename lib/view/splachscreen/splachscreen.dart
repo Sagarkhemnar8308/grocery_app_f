@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery_app/constant/colors.dart';
+import 'package:grocery_app/services/firebase_services.dart';
+import 'package:grocery_app/util/textstyles.dart';
+import 'package:grocery_app/view/auth/signupscreen.dart';
+import 'package:grocery_app/view/dashboard.dart';
 import 'package:grocery_app/widgets/icon_widget.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
-import 'welcomescreen.dart';
+import '../../widgets/sizedbox_widget.dart';
 
 class SplachScreen extends StatefulWidget {
   const SplachScreen({super.key});
@@ -13,17 +17,23 @@ class SplachScreen extends StatefulWidget {
 }
 
 class _SplachScreenState extends State<SplachScreen> {
+  final DatabaseService db = DatabaseService();
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const WelcomeScreen(),
-        ),
-        (route) => false,
-      );
+      db.auth.currentUser != null
+          ? Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DashboardScreen(),
+              ),(route) => false,)
+          : Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUpScreen(),
+              ),(route) => false,
+            );
     });
   }
 
@@ -47,29 +57,27 @@ class _SplachScreenState extends State<SplachScreen> {
                   children: [
                     IconWidget(
                       icon: Icons.local_grocery_store_outlined,
-                      size: 70.sp,
+                      size: 50.sp,
                       color: white,
                     ),
-                   
                   ],
                 ),
-                 SizedBox(
+                SizedBoxWidget(
                   width: 12.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextWidget(
-                      text: "SainathStore",
-                      color: white,
-                      fontSize: 25.sp,
-                      fontWeight: FontWeight.bold,
+                      text: "Sainath Store",
+                      style: oswaldTextStyle,
                     ),
                     TextWidget(
                       textAlign: TextAlign.center,
-                      text: "online grocery",
+                      text: "online groceriet",
                       color: white,
-                      fontSize: 16.sp,
+                      fontSize: 10.sp,
+                      letterSpacing: 8,
                     ),
                   ],
                 )

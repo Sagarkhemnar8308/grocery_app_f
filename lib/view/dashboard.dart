@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery_app/constant/colors.dart';
 import 'package:grocery_app/view/cart/cartscreen.dart';
 import 'package:grocery_app/view/explore/explore.dart';
@@ -38,14 +39,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: currentPage,
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: TextStyle(
-          color: black
+          color: primaryColor
         ),
-        unselectedLabelStyle: TextStyle(color: black),
           onTap: (value) {
-           setState(() {
-            currentIndex = value;
-            currentPage = pages[value];
-          });
+            setState(() {
+              currentIndex = value;
+              currentPage = pages[value];
+            });
           },
           type: BottomNavigationBarType.fixed,
           items: [
@@ -53,35 +53,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
               label: 'Shop',
               icon: Icon(
                 Icons.shopify,
-                color: black,
+                color: currentIndex == 0 ? primaryColor : black,
+                size: 25.sp,
               ),
             ),
             BottomNavigationBarItem(
               label: 'Explore',
               icon: Icon(
                 Icons.search,
-                color: black,
+                size: 25.sp,
+                color: currentIndex == 1 ? primaryColor : black,
               ),
             ),
             BottomNavigationBarItem(
               label: 'Cart',
               icon: Icon(
                 Icons.shopping_cart_checkout_outlined,
-                color: black,
+                color: currentIndex == 2 ? primaryColor : black,
+                size: 25.sp,
               ),
             ),
             BottomNavigationBarItem(
               label: 'Favorite',
               icon: Icon(
-                Icons.favorite,
-                color: black,
+                Icons.favorite_border_outlined,
+                color: currentIndex == 3 ? primaryColor : black,
+                size: 25.sp,
               ),
             ),
             BottomNavigationBarItem(
               label: 'Account',
               icon: Icon(
                 Icons.account_circle_outlined,
-                color: black,
+                color: currentIndex == 4 ? primaryColor : black,
+                size: 25.sp,
               ),
             ),
           ]),

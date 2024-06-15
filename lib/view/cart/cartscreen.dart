@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/constant/colors.dart';
 import 'package:grocery_app/constant/images.dart';
+import 'package:grocery_app/util/textstyles.dart';
 import 'package:grocery_app/widgets/cart_widget.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
 
@@ -16,20 +17,26 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: white,
-        title: const TextWidget(
+        centerTitle: true,
+        title:  TextWidget(
           text: 'My Cart',
+          style: defaultTextstyle.copyWith(),
         ),
       ),
-      body: Column(
-        children: [
-          CartWidget(
-            productName: "productName",
-            weight: "weight",
-            rs: "rs",
-            imgUrl: manBackgroundimg,
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            CartWidget(
+              productName: "productName",
+              weight: "weight",
+              rs: "rs",
+              imgUrl: manBackgroundimg,
+            )
+          ],
+        ),
       ),
     );
   }

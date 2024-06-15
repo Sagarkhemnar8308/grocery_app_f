@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grocery_app/widgets/icon_widget.dart';
 import 'package:grocery_app/widgets/text_widget.dart';
 
+import '../util/textstyles.dart';
+
 class CustomListTile extends StatefulWidget {
   const CustomListTile({
     super.key,
@@ -29,7 +31,7 @@ class _CustomListTileState extends State<CustomListTile> {
       ),
       title: TextWidget(
         text: widget.text,
-        color: widget.textcolor,
+        style: defaultTextstyle,
       ),
       trailing: IconButton(
           onPressed: () {},

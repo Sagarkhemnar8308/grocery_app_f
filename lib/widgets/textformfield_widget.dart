@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grocery_app/constant/colors.dart';
+import 'package:grocery_app/util/textstyles.dart';
 
 class TextformFieldWidget extends StatefulWidget {
   const TextformFieldWidget({
@@ -28,6 +28,7 @@ class TextformFieldWidget extends StatefulWidget {
     this.fontSize,
     this.maxLine,
     this.labeltext,
+    this.hintStyle,
   });
 
   final String? initialValue;
@@ -43,7 +44,7 @@ class TextformFieldWidget extends StatefulWidget {
   final Color? hintTextColor;
   final Color? textColor;
   final FocusNode? focusNode;
-  final String? suffixIcon;
+  final Widget? suffixIcon;
   final TextInputType? textInputType;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormater;
@@ -52,6 +53,7 @@ class TextformFieldWidget extends StatefulWidget {
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String? labeltext;
+  final TextStyle? hintStyle;
   @override
   State<TextformFieldWidget> createState() => _TextformFieldWidgetState();
 }
@@ -62,15 +64,14 @@ class _TextformFieldWidgetState extends State<TextformFieldWidget> {
     return Container(
       decoration: BoxDecoration(
         color: widget.backgroundColor,
-        borderRadius:
-            widget.isRounded ? BorderRadius.circular(widget.rouneded) : null,
+        borderRadius: BorderRadius.circular(widget.rouneded),
       ),
       height: widget.height,
       child: TextFormField(
           maxLines: widget.maxLine ?? 1,
           obscureText: widget.obscureText ?? false,
           initialValue: widget.initialValue,
-          cursorColor: black,
+          cursorColor: const Color.fromARGB(255, 127, 126, 126),
           inputFormatters: widget.inputFormater,
           keyboardType: widget.textInputType,
           autofocus: false,
@@ -78,38 +79,26 @@ class _TextformFieldWidgetState extends State<TextformFieldWidget> {
           focusNode: widget.focusNode,
           onChanged: widget.onChanged,
           validator: widget.validator,
-          style: TextStyle(
-              fontSize: widget.fontSize,
-              fontWeight: widget.fontWeight,
-              color: widget.textColor),
+          style: textEditingStyle,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.all(10.h),
             hintText: widget.hintText,
-            labelText: widget.labeltext,
-            labelStyle: TextStyle(
-              fontSize: widget.fontSize,
-              fontWeight: widget.fontWeight,
-              color: widget.hintTextColor,
-            ),
-            hintStyle: TextStyle(
-              fontSize: widget.fontSize,
-              fontWeight: widget.fontWeight,
-              color: widget.hintTextColor,
-            ),
-            focusedBorder: UnderlineInputBorder(
+            hintStyle: widget.hintStyle,
+            suffixIcon: widget.suffixIcon,
+            focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
               width: 1.w,
-              color: black,
+              color: const Color(0XFFAFAFAF),
             )),
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
               width: 1.w,
-              color: black,
+              color: const Color(0XFFAFAFAF),
             )),
-            border: UnderlineInputBorder(
+            border: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1.w,
-                color: black,
+                color: const Color(0XFFAFAFAF),
               ),
             ),
           )),

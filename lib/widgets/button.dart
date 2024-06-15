@@ -30,7 +30,8 @@ class CustomElevatedButton extends StatefulWidget {
 class _CustomElevatedButtonState extends State<CustomElevatedButton> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      alignment: Alignment.center,
       height: widget.height,
       width: widget.width,
       child: ElevatedButton(
@@ -41,10 +42,13 @@ class _CustomElevatedButtonState extends State<CustomElevatedButton> {
             borderRadius: BorderRadius.circular(widget.buttonRadius ?? 12.r),
           ),
         ),
-        child: TextWidget(
-          text: widget.text,
-          color: widget.textColor,
-          fontSize: widget.textfontsize ?? 12.sp,
+        child: Center(
+          child: TextWidget(
+            textAlign: TextAlign.center,
+            text: widget.text,
+            color: widget.textColor,
+            fontSize: widget.textfontsize ?? 12.sp,
+          ),
         ),
       ),
     );

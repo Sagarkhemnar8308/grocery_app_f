@@ -1,2 +1,2 @@
 
-String manBackgroundimg="asset/images/man_background.jpg";
+String manBackgroundimg="asset/images/delivery_boy.jpg";
